@@ -1,10 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My First HTML Document</title>
+    <title>Global YouTube Statistics 2023</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9; /* YouTube-like background color */
+            margin: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff; /* White container background */
+            border-radius: 8px; /* Rounded corners for the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            margin-bottom: 20px; /* Added space between the containers */
+            box-sizing: border-box;
+            margin-top: 20px; /* Added space at the top */
+        }
+
+        h1, h2, p {
+            color: #ff0000; /* YouTube red for headings and text */
+        }
+
+        #chart1, #chart2, #chart3 {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            max-width: 150px; /* Increased the logo size */
+        }
+    </style>
 </head>
 <body>
-    <h1>Heading 1</h1>
-    <p>My First Paragraph</p>
+    <div class="container">
+        <img class="logo" src="https://www.youtube.com/img/desktop/yt_1200.png" alt="YouTube Logo">
+        <h1>Global YouTube Statistics 2023</h1>
+    </div>
+
+    <div class="container">
+        <h2>Top 10 YouTube Channels by Total Subscribers</h2>
+
+        <div id="chart1"></div>
+
+        <p>This visualization showcases the top 10 YouTube channels based on their total number of subscribers. The data has been filtered to include only the channels with the highest ranks. Each bar represents a channel, and the color indicates the category to which the channel belongs. The chart provides a clear comparison of subscriber counts among the top channels.</p>
+    </div>
+
+    <div class="container">
+        <h2>YouTube Channel Engagement: Subscribers vs. Video Views</h2>
+
+        <div id="chart2"></div>
+
+        <p>This scatter plot visualizes the relationship between the number of subscribers and the total video views for YouTube channels. Each point represents a channel, and its position on the plot indicates the level of engagement in terms of subscribers and video views. Channels are color-coded by category, allowing for easy differentiation. The tooltips provide detailed information about each channel, including its name, subscriber count, video views, and category.</p>
+    </div>
+
+    <div class="container">
+        <h2>YouTube Channel Subscribers: Category-wise Distribution</h2>
+
+        <div id="chart3"></div>
+
+        <p>This box plot visualization provides a distribution of subscriber counts across different categories of YouTube channels. Each box represents a category, showing the median, interquartile range (IQR), and any potential outliers. The whiskers extend up to 1.5 times the IQR. Categories are color-coded for easy identification. This visualization allows for a quick overview of the spread of subscribers within each category.</p>
+    </div>
+
+
+    <script>
+        // Your Vega-Lite specifications go here
+        const spec1 = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
+            "format": {"type": "csv"}
+          },
+          "transform": [{"filter": {"field": "rank", "lte": 10}}],
+          "mark": "bar",
+          "encoding": {
+            "y": {"field": "Youtuber", "type": "nominal"},
+            "x": {"field": "subscribers", "type": "quantitative", "aggregate": "sum"},
+            "color": {"field": "category", "type": "nominal"},
+            "tooltip": [
+              {"field": "Youtuber", "type": "nominal"},
+              {"field": "subscribers", "type": "quantitative"},
+              {"field": "category", "type": "nominal"}
+            ]
+          }
+        };
+
+        const spec2 = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
+            "format": {"type": "csv"}
+          },
+          "mark": "point",
+          "encoding": {
+            "x": {"field": "subscribers", "type": "quantitative"},
+            "y": {"field": "video views", "type": "quantitative"},
+            "color": {"field": "category", "type": "nominal"},
+            "tooltip": [
+              {"field": "Youtuber", "type": "nominal"},
+              {"field": "subscribers", "type": "quantitative"},
+              {"field": "video views", "type": "quantitative"},
+              {"field": "category", "type": "nominal"}
+            ]
+          }
+        };
+
+        const spec3 = {
+          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+          "data": {
+            "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
+            "format": {"type": "csv"}
+          },
+          "mark": {"type": "boxplot", "extent": 1.5},
+          "encoding": {
+            "x": {"field": "category", "type": "nominal"},
+            "y": {"field": "subscribers", "type": "quantitative"},
+            "color": {"field": "category", "type": "nominal"}
+          }
+        };
+
+        // Embed the Vega-Lite charts
+        vegaEmbed('#chart1', spec1);
+        vegaEmbed('#chart2', spec2);
+        vegaEmbed('#chart3', spec3);
+    </script>
 </body>
 </html>
