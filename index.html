@@ -75,58 +75,97 @@
     <script>
         // Your Vega-Lite specifications go here
         const spec1 = {
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "data": {
-            "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
-            "format": {"type": "csv"}
-          },
-          "transform": [{"filter": {"field": "rank", "lte": 10}}],
-          "mark": "bar",
-          "encoding": {
-            "y": {"field": "Youtuber", "type": "nominal"},
-            "x": {"field": "subscribers", "type": "quantitative", "aggregate": "sum"},
-            "color": {"field": "category", "type": "nominal"},
-            "tooltip": [
-              {"field": "Youtuber", "type": "nominal"},
-              {"field": "subscribers", "type": "quantitative"},
-              {"field": "category", "type": "nominal"}
-            ]
-          }
-        };
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [{"filter": {"field": "rank", "lte": 10}}],
+  "mark": {
+    "type": "bar",
+    "cornerRadius": 5,
+    "tooltip": true,
+    "opacity": 0.8
+  },
+  "encoding": {
+    "y": {"field": "Youtuber", "type": "nominal", "axis": {"title": "YouTube Channel"}},
+    "x": {"field": "subscribers", "type": "quantitative", "aggregate": "sum", "axis": {"title": "Total Subscribers"}},
+    "color": {"field": "category", "type": "nominal", "legend": {"orient": "right", "title": "Category"}}  
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"domain": false, "grid": false},  // Remove grid lines
+    "axisY": {"titleFont": "Helvetica", "titleFontSize": 12, "titlePadding": 10},
+    "title": {"font": "Helvetica", "fontSize": 16}
+  }
+}
 
         const spec2 = {
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "data": {
-            "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
-            "format": {"type": "csv"}
-          },
-          "mark": "point",
-          "encoding": {
-            "x": {"field": "subscribers", "type": "quantitative"},
-            "y": {"field": "video views", "type": "quantitative"},
-            "color": {"field": "category", "type": "nominal"},
-            "tooltip": [
-              {"field": "Youtuber", "type": "nominal"},
-              {"field": "subscribers", "type": "quantitative"},
-              {"field": "video views", "type": "quantitative"},
-              {"field": "category", "type": "nominal"}
-            ]
-          }
-        };
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "size": 60
+  },
+  "encoding": {
+    "x": {
+      "field": "subscribers",
+      "type": "quantitative",
+      "axis": {"title": "Subscribers (Millions)", "format": ".2s",}  // Format in millions
+    },
+    "y": {
+      "field": "video views",
+      "type": "quantitative",
+      "axis": {"title": "Video Views (Millions)", "format": ".2s", "formatType": "number"}  // Format in millions
+    },
+    "color": {"field": "category", "type": "nominal", "legend": {"orient": "right", "title": "Category"}},
+    "tooltip": [
+      {"field": "Youtuber", "type": "nominal"},
+      {"field": "subscribers", "type": "quantitative"},
+      {"field": "video views", "type": "quantitative"},
+      {"field": "category", "type": "nominal"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "legend": {"titleFontSize": 14, "labelFontSize": 12, "titlePadding": 10, "labelLimit": 0},
+    "axis": {"domain": false, "grid": false},
+    "axisY": {"titleFont": "Helvetica", "titleFontSize": 14, "titlePadding": 10, "labelFontSize": 12},
+    "axisX": {"titleFont": "Helvetica", "titleFontSize": 14, "titlePadding": 10, "labelFontSize": 12},
+    "title": {"font": "Helvetica", "fontSize": 16, "anchor": "start", "offset": 10}
+  }
+}
+
 
         const spec3 = {
-          "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-          "data": {
-            "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
-            "format": {"type": "csv"}
-          },
-          "mark": {"type": "boxplot", "extent": 1.5},
-          "encoding": {
-            "x": {"field": "category", "type": "nominal"},
-            "y": {"field": "subscribers", "type": "quantitative"},
-            "color": {"field": "category", "type": "nominal"}
-          }
-        };
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
+    "format": {"type": "csv"}
+  },
+  "mark": {
+    "type": "boxplot",
+    "extent": 1.5
+  },
+  "encoding": {
+    "x": {"field": "category", "type": "nominal"},
+    "y": {"field": "subscribers", "type": "quantitative"},
+    "color": {"field": "category", "type": "nominal"}
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "legend": {"titleFontSize": 14, "labelFontSize": 12, "titlePadding": 10, "labelLimit": 0},
+    "axis": {
+      "domain": false,
+      "grid": false  // Remove grid lines
+    }
+  }
+}
+
 
         // Embed the Vega-Lite charts
         vegaEmbed('#chart1', spec1);
@@ -135,3 +174,4 @@
     </script>
 </body>
 </html>
+
