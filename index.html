@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Global YouTube Statistics 2023</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -8,100 +9,227 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9; /* YouTube-like background color */
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff; /* White background */
             margin: 0;
             text-align: center;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
             padding: 20px;
-            background-color: #fff; /* White container background */
-            border-radius: 8px; /* Rounded corners for the container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-            margin-bottom: 20px; /* Added space between the containers */
             box-sizing: border-box;
-            margin-top: 20px; /* Added space at the top */
         }
 
-        h1, h2, p {
-            color: #ff0000; /* YouTube red for headings and text */
+        .title-container {
+            background-color: #ff0000; /* Red background */
+            color: #ffffff; /* White font color */
+            padding: 20px;
+            border-radius: 8px; /* Rounded corners */
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #000000;
         }
 
-        #chart1, #chart2, #chart3 {
-            max-width: 600px;
-            margin: 0 auto;
+        .main-title {
+            font-size: 48px; /* Larger font size */
+            font-family: 'serif'; /* Serif typeface */
+            margin-bottom: 20px;
+            color: #ffffff; /* White font color */
+            margin-top: 0; /* Remove default margin */
         }
 
         .logo {
-            max-width: 150px; /* Increased the logo size */
+            max-width: 300px; /* Increased logo size */
+            margin-bottom: 10px; /* Add space between logo and title */
+        }
+
+        h1, h2 {
+            color: #ff0000; /* YouTube red for headings */
+            text-align: left;
+        }
+
+        p {
+            color: #000000; /* Black font color for paragraphs */
+            text-align: left;
+        }
+
+        .chart-container {
+            width: 100vw; /* Set container width to 100% */
+            background-color: #fff; /* White container background */
+            border: 4px solid #ff0000; /* Red border */
+            border-radius: 8px; /* Rounded corners for the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            margin-bottom: 40px; /* Added more space between the containers */
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 0 auto; /* Center the container */
+            max-width: 1200px; /* Set maximum width */
+        }
+
+        .chart-container h2 {
+            text-align: center; /* Center headings */
+        }
+
+        .chart-container div {
+            margin-bottom: 20px; /* Add space between charts */
+        }
+
+        .chart-container div p {
+            margin-top: 10px; /* Add space between chart and text */
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
+    <div class="title-container">
         <img class="logo" src="https://www.youtube.com/img/desktop/yt_1200.png" alt="YouTube Logo">
-        <h1>Global YouTube Statistics 2023</h1>
+        <h1 class="main-title">Global YouTube Statistics 2023</h1>
     </div>
 
-    <div class="container">
+    <div class="chart-container" style="max-width: 1200px; margin-bottom: 20px;">
+      <h2>Number of YouTubers in Countries</h2>
+      <div id="chart1"></div>
+      <p>Step into the dynamic realm of YouTube, where a diverse array of content creators gather followers from across the globe. The graph above offers insight into the YouTuber landscape, showcasing the number of creators in various countries. Each point on the graph represents a country, with its position determined by latitude and longitude. The size of the points corresponds to the number of YouTubers, ranging from petite to substantial, and the color intensity deepens with increasing counts. Hover over each point to unveil specific details, including the country's name and the exact count of YouTubers, providing a fascinating glimpse into the global YouTube community.</p>
+ </div>
+    <div class="chart-container" style="max-width: 1200px; margin-bottom: 20px;">
         <h2>Top 10 YouTube Channels by Total Subscribers</h2>
-
-        <div id="chart1"></div>
-
-        <p>This visualization showcases the top 10 YouTube channels based on their total number of subscribers. The data has been filtered to include only the channels with the highest ranks. Each bar represents a channel, and the color indicates the category to which the channel belongs. The chart provides a clear comparison of subscriber counts among the top channels.</p>
-    </div>
-
-    <div class="container">
-        <h2>YouTube Channel Engagement: Subscribers vs. Video Views</h2>
-
         <div id="chart2"></div>
-
-        <p>This scatter plot visualizes the relationship between the number of subscribers and the total video views for YouTube channels. Each point represents a channel, and its position on the plot indicates the level of engagement in terms of subscribers and video views. Channels are color-coded by category, allowing for easy differentiation. The tooltips provide detailed information about each channel, including its name, subscriber count, video views, and category.</p>
+        <p>Imagine stepping into the vibrant world of YouTube, where content creators amass followers from all corners of the globe. This graph unveils the crème de la crème, presenting the ten most-subscribed YouTube channels. It's like a leaderboard of digital influencers, each bar representing a channel, with the length reflecting their subscriber count, measured in millions. Hovering over each bar reveals a tooltip, providing detailed information about the channel, including its name, subscriber count, and category.</p>
     </div>
 
-    <div class="container">
-        <h2>YouTube Channel Subscribers: Category-wise Distribution</h2>
-
+    <div class="chart-container" style="max-width: 1200px; margin-bottom: 20px;">
+        <h2>YouTube Channel Engagement: Subscribers vs. Video Views</h2>
         <div id="chart3"></div>
-
-        <p>This box plot visualization provides a distribution of subscriber counts across different categories of YouTube channels. Each box represents a category, showing the median, interquartile range (IQR), and any potential outliers. The whiskers extend up to 1.5 times the IQR. Categories are color-coded for easy identification. This visualization allows for a quick overview of the spread of subscribers within each category.</p>
+        <p>Now, let's dive deeper into the dynamics. Picture a scatter plot where each dot signifies a YouTube channel. The x-axis reveals the number of subscribers, while the y-axis measures the total video views, both in the millions. The size of each dot corresponds to the channel's subscriber count. Hovering over a dot unveils a tooltip, offering key details about the channel, such as its name, subscriber count, video views, and category. It's like a constellation of data points, with each holding a story waiting to be explored.</p>
     </div>
+
+    <div class="chart-container" style="max-width: 1200px; margin-bottom: 20px;">
+        <h2>YouTube Channel Subscribers: Category-wise Distribution</h2>
+        <div id="chart4"></div>
+        <p>Moving on, let's dissect the landscape by content category. The graph elegantly combines box plots and individual points to illustrate subscriber trends within each category. The box plots provide a snapshot of distribution, revealing the range of subscribers. Meanwhile, the red points highlight category averages. Hovering over any data point reveals a tooltip, presenting essential details about the channel, including its name, subscriber count, and category. With grid lines removed, the focus sharpens on the trends themselves. It's akin to uncovering patterns within a complex tapestry, offering a nuanced understanding of subscriber dynamics in various content domains.</p>
+    </div>
+
 
 
     <script>
         // Your Vega-Lite specifications go here
         const spec1 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Number of YouTubers in Countries",
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/ne_50m_admin_0_countries.json",
+    "format": {"type": "topojson", "feature": "ne_50m_admin_0_countries"},
+    "name": "world"
+  },
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "transform": [
+        {
+          "calculate": "'Data is not available in '  + datum.properties.name",
+          "as": "note"
+        }
+      ],
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
+      "encoding": {"tooltip": {"field": "note"}}
+    },
+    {
+      "data": {
+        "values": [
+          {"Country Name": "United States", "YouTuber_count": 55000, "Longitude": -95.7129, "Latitude": 37.0902},
+          {"Country Name": "India", "YouTuber_count": 42601, "Longitude": 78.9629, "Latitude": 20.5937},
+          {"Country Name": "China", "YouTuber_count": 32571, "Longitude": 104.1954, "Latitude": 35.8617},
+          {"Country Name": "Brazil", "YouTuber_count": 26560, "Longitude": -47.9292, "Latitude": -15.7801},
+          {"Country Name": "Russia", "YouTuber_count": 19111, "Longitude": 105.3188, "Latitude": 61.5240},
+          {"Country Name": "Indonesia", "YouTuber_count": 17692, "Longitude": 113.9213, "Latitude": -0.7893},
+          {"Country Name": "Mexico", "YouTuber_count": 15621, "Longitude": -102.5528, "Latitude": 23.6345},
+          {"Country Name": "Japan", "YouTuber_count": 14111, "Longitude": 138.2529, "Latitude": 36.2048},
+          {"Country Name": "Germany", "YouTuber_count": 12584, "Longitude": 10.4515, "Latitude": 51.1657},
+          {"Country Name": "United Kingdom", "YouTuber_count": 11596, "Longitude": -3.4359, "Latitude": 55.3781},
+          {"Country Name": "Canada", "YouTuber_count": 30455, "Longitude": -106.3468, "Latitude": 56.1304},
+          {"Country Name": "Australia", "YouTuber_count": 35610, "Longitude": 133.7751, "Latitude": -25.2744},
+          {"Country Name": "France", "YouTuber_count": 17050, "Longitude": 2.2137, "Latitude": 46.6033},
+          {"Country Name": "South Korea", "YouTuber_count": 7010, "Longitude": 127.7669, "Latitude": 35.9078},
+          {"Country Name": "Nigeria", "YouTuber_count": 6089, "Longitude": 8.6753, "Latitude": 9.0820},
+          {"Country Name": "Argentina", "YouTuber_count": 5230, "Longitude": -63.6167, "Latitude": -38.4161},
+          {"Country Name": "Spain", "YouTuber_count": 4000, "Longitude": -3.7492, "Latitude": 40.4637},
+          {"Country Name": "Italy", "YouTuber_count": 3000, "Longitude": 12.5674, "Latitude": 41.8719},
+          {"Country Name": "Turkey", "YouTuber_count": 20000, "Longitude": 35.2433, "Latitude": 38.9637},
+          {"Country Name": "Iran", "YouTuber_count": 1000, "Longitude": 53.6880, "Latitude": 32.4279},
+          {"Country Name": "Pakistan", "YouTuber_count": 22000, "Longitude": 69.3451, "Latitude": 30.3753},
+          {"Country Name": "Niger", "YouTuber_count": 2000, "Longitude": 8.0817, "Latitude": 17.6078},
+          {"Country Name": "Kenya", "YouTuber_count": 5000, "Longitude": 37.9062, "Latitude": -1.2921}
+        ]
+      },
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "YouTuber_count",
+          "type": "quantitative",
+          "scale": {"type": "linear", "domain": [0, 60000], "range": [20, 200]}
+        },
+        "color": {
+          "field": "YouTuber_count",
+          "type": "quantitative",
+          "title": "Number of YouTubers",
+          "scale": {"type": "linear", "scheme": "reds", "domain": [0, 60000]}
+        },
+        "tooltip": [
+          {"field": "Country Name", "type": "nominal", "title": "Country"},
+          {"field": "YouTuber_count", "type": "quantitative", "title": "Number of YouTubers"}
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
+
+const spec2 = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
     "format": {"type": "csv"}
   },
-  "transform": [{"filter": {"field": "rank", "lte": 10}}],
-  "mark": {
-    "type": "bar",
-    "cornerRadius": 5,
-    "tooltip": true,
-    "opacity": 0.8
-  },
+  "transform": [
+    {"filter": {"field": "rank", "lte": 10}},
+    {"sort": [{"field": "subscribers", "order": "descending"}]}
+  ],
+  "mark": "bar",
   "encoding": {
-    "y": {"field": "Youtuber", "type": "nominal", "axis": {"title": "YouTube Channel"}},
-    "x": {"field": "subscribers", "type": "quantitative", "aggregate": "sum", "axis": {"title": "Total Subscribers"}},
-    "color": {"field": "category", "type": "nominal", "legend": {"orient": "right", "title": "Category"}}  
+    "x": {
+      "field": "subscribers",
+      "type": "quantitative",
+      "title": "Subscribers (in Millions)",
+      "axis": {"labelExpr": "format(datum.value / 1e6, ',.1f') + 'M'"}
+    },
+    "y": {"field": "Youtuber", "type": "nominal", "title": "YouTube Channel"},
+    "color": {"field": "category", "type": "nominal", "legend": {"title": "Category"}},
+    "tooltip": [
+      {"field": "Youtuber", "type": "nominal", "title": "Channel"},
+      {"field": "subscribers", "type": "quantitative", "title": "Subscribers"},
+      {"field": "category", "type": "nominal", "title": "Category"}
+    ]
   },
   "config": {
     "view": {"stroke": "transparent"},
-    "axis": {"domain": false, "grid": false},  // Remove grid lines
-    "axisY": {"titleFont": "Helvetica", "titleFontSize": 12, "titlePadding": 10},
+    "legend": {"titleFontSize": 14, "labelFontSize": 12, "titlePadding": 10, "labelLimit": 0},
+    "axis": {"domain": false, "grid": false},
+    "axisY": {"titleFont": "Helvetica", "titleFontSize": 14, "titlePadding": 10, "labelFontSize": 12},
+    "axisX": {"titleFont": "Helvetica", "titleFontSize": 14, "titlePadding": 10, "labelFontSize": 12},
     "title": {"font": "Helvetica", "fontSize": 16}
   }
 }
 
-        const spec2 = {
+        const spec3 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
     "format": {"type": "csv"}
@@ -109,20 +237,37 @@
   "mark": {
     "type": "point",
     "filled": true,
-    "size": 60
+    "tooltip": true
   },
   "encoding": {
     "x": {
       "field": "subscribers",
       "type": "quantitative",
-      "axis": {"title": "Subscribers (Millions)", "format": ".2s",}  // Format in millions
+      "axis": {"title": "Subscribers (Millions)", "format": ".2s"}
     },
     "y": {
       "field": "video views",
       "type": "quantitative",
-      "axis": {"title": "Video Views (Millions)", "format": ".2s", "formatType": "number"}  // Format in millions
+      "axis": {"title": "Video Views (Millions)", "format": ".2s", "formatType": "number"}
     },
-    "color": {"field": "category", "type": "nominal", "legend": {"orient": "right", "title": "Category"}},
+    "size": {
+      "field": "subscribers",
+      "type": "quantitative",
+      "scale": {"type": "log", "zero": false},
+      "title": "Subscribers",
+      "legend": {"title": "Subscribers (Millions)"}
+    },
+    "color": {
+      "field": "category",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+          "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
+        ]
+      },
+      "legend": {"orient": "right", "title": "Category"}
+    },
     "tooltip": [
       {"field": "Youtuber", "type": "nominal"},
       {"field": "subscribers", "type": "quantitative"},
@@ -141,37 +286,52 @@
 }
 
 
-        const spec3 = {
+
+
+        const spec4 = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
   "data": {
     "url": "https://raw.githubusercontent.com/izhanadil/FIT3179/main/Global%20YouTube%20Statistics.csv",
     "format": {"type": "csv"}
   },
-  "mark": {
-    "type": "boxplot",
-    "extent": 1.5
-  },
-  "encoding": {
-    "x": {"field": "category", "type": "nominal"},
-    "y": {"field": "subscribers", "type": "quantitative"},
-    "color": {"field": "category", "type": "nominal"}
-  },
+  "layer": [
+    {
+      "mark": {"type": "boxplot", "extent": 1.5},
+      "encoding": {
+        "x": {"field": "category", "type": "nominal"},
+        "y": {"field": "subscribers", "type": "quantitative"},
+        "color": {"field": "category", "type": "nominal"}
+      }
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 60, "color": "red", "opacity": 0.7},
+      "encoding": {
+        "x": {"field": "category", "type": "nominal"},
+        "y": {"field": "subscribers", "type": "quantitative", "aggregate": "average"}
+      }
+    }
+  ],
   "config": {
     "view": {"stroke": "transparent"},
     "legend": {"titleFontSize": 14, "labelFontSize": 12, "titlePadding": 10, "labelLimit": 0},
     "axis": {
       "domain": false,
-      "grid": false  // Remove grid lines
+      "grid": false,
+      "labelFontSize": 12,
+      "titleFont": "Helvetica", "titleFontSize": 14, "titlePadding": 10
     }
   }
 }
+
 
 
         // Embed the Vega-Lite charts
         vegaEmbed('#chart1', spec1);
         vegaEmbed('#chart2', spec2);
         vegaEmbed('#chart3', spec3);
+        vegaEmbed('#chart4', spec4)
     </script>
 </body>
 </html>
-
